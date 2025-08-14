@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "Flood Relief in Sylhet",
+    "image": "https://example.com/images/flood-relief.jpg",
+    "description": "Emergency relief for flood victims in Sylhet division. Providing food, clean water, and shelter to affected families.",
+    "status": "Active",
+    "contactinfo": "sylhet-relief@example.com | 01711234567",
+    "division": "Sylhet"
+  },
+  {
+    "id": 2,
+    "title": "Dhaka Orphanage Support",
+    "image": "https://example.com/images/orphanage.jpg",
+    "description": "Monthly support program for orphanages in Dhaka. Help us provide education, food, and medical care.",
+    "status": "Ongoing",
+    "contactinfo": "dhaka-orphanage@example.com | 01817654321",
+    "division": "Dhaka"
+  },
+  {
+    "id": 3,
+    "title": "Chittagong Cyclone Recovery",
+    "image": "https://example.com/images/cyclone-recovery.jpg",
+    "description": "Rebuilding homes and livelihoods after the devastating cyclone in coastal Chittagong.",
+    "status": "Active",
+    "contactinfo": "chittagong-aid@example.com | 01911223344",
+    "division": "Chittagong"
+  },
+  {
+    "id": 4,
+    "title": "Rangpur Winter Clothing Drive",
+    "image": "https://example.com/images/winter-drive.jpg",
+    "description": "Providing warm clothing and blankets to underprivileged communities in Rangpur during winter months.",
+    "status": "Planning",
+    "contactinfo": "rangpur-winter@example.com | 01615556677",
+    "division": "Rangpur"
+  },
+  {
+    "id": 5,
+    "title": "Khulna Education Fund",
+    "image": "https://example.com/images/education-fund.jpg",
+    "description": "Scholarship program for bright students from low-income families in Khulna division.",
+    "status": "Ongoing",
+    "contactinfo": "khulna-education@example.com | 01558889900",
+    "division": "Khulna"
+  },
+  {
+    "id": 6,
+    "title": "Rajshahi Medical Camp",
+    "image": "https://example.com/images/medical-camp.jpg",
+    "description": "Free medical checkups and medicine distribution in rural areas of Rajshahi division.",
+    "status": "Active",
+    "contactinfo": "rajshahi-medical@example.com | 01776543210",
+    "division": "Rajshahi"
+  }
+]
