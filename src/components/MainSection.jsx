@@ -9,7 +9,7 @@ const MainSection = () => {
   );
 
   // State to track how many items to show
-  const [visibleItems, setVisibleItems] = useState(4);
+  const [visibleItems, setVisibleItems] = useState(6);
   
   const handleAddToCollection = (campaignId) => {
     console.log(`Added campaign ${campaignId} to collection`);
@@ -39,13 +39,7 @@ const MainSection = () => {
               <div className="p-4">
                 <div className="flex justify-between items-start">
                   <h2 className="font-bold text-lg">{campaign.title}</h2>
-                  <span className={`px-2 py-1 rounded-full text-xs ${
-                    campaign.status === 'Active' ? 'bg-green-100 text-green-800' :
-                    campaign.status === 'Ongoing' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-blue-100 text-blue-800'
-                  }`}>
-                    {campaign.status}
-                  </span>
+                  
                 </div>
                 
                 <p className="text-gray-500 text-sm mt-1">{campaign.division}</p>
@@ -67,17 +61,7 @@ const MainSection = () => {
           ))}
         </div>
 
-        {/* Show More button (only if there are more items to show) */}
-        {visibleItems < winterDonations.length && (
-          <div className="text-center mt-6">
-            <button 
-              onClick={showMoreItems}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-md transition-colors"
-            >
-              Show More Winter Donations
-            </button>
-          </div>
-        )}
+        
       </div>
     </div>
   );
