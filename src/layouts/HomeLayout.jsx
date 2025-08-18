@@ -1,13 +1,21 @@
 import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
+import WinterDonationSlider from "../components/WinterDonationSlider";
 
 
 const HomeLayout = () => {
     return (
         <div>
-           <nav className="w-11/12 max-auto py-2">
-            <Navbar></Navbar>
+           <nav className="w-11/12 max-auto py-2 pl-16">
+           <section>
+              <Navbar></Navbar>
+           </section>
+           <section>
+               <WinterDonationSlider></WinterDonationSlider>
+           </section>
+           
+            
            </nav>
            <main className="w-11/12 mx-auto pt-5">
            <MainSection></MainSection>
