@@ -1,15 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
+import DataCollections from "../components/DataCollections";
 
 
 const router = createBrowserRouter([
     {
         path:"/",
         element: <HomeLayout></HomeLayout>,
+        
     },
      {
         path:"/clothdonate",
         element: <h1>Cloth Donate Layout</h1>,
+    },
+    {
+        path: "/datacollection",
+        element:<DataCollections></DataCollections>
     },
      {
         path:"/auth",
