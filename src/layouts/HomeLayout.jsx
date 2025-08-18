@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
 
@@ -11,7 +12,9 @@ const HomeLayout = () => {
            <main className="w-11/12 mx-auto pt-5">
            <MainSection></MainSection>
            </main>
-           <footer></footer>
+           <footer>
+            <Footer></Footer>
+           </footer>
         </div>
     );
 };

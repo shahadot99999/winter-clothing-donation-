@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const DataCollections = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const DataCollections = () => {
           </p>
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 };
