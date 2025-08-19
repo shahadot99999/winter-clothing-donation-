@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
 import WinterDonationSlider from "../components/WinterDonationSlider";
+import EventsSection from "../extracarricullam/EventsSection";
 import ImpactStats from "../extracarricullam/ImpactStats";
 import PartnersSection from "../extracarricullam/PartnersSection";
 import VolunteerTestimonials from "../extracarricullam/VolunteerTestimonials";
@@ -30,6 +31,7 @@ const HomeLayout = () => {
             <ImpactStats></ImpactStats>
             <VolunteerTestimonials></VolunteerTestimonials>
             <PartnersSection></PartnersSection>
+            <EventsSection></EventsSection>
            </section>
            <footer>
             <Footer></Footer>
