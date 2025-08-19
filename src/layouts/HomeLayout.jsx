@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
 import WinterDonationSlider from "../components/WinterDonationSlider";
+import ImpactStats from "../extracarricullam/ImpactStats";
 
 
 const HomeLayout = () => {
@@ -24,6 +25,7 @@ const HomeLayout = () => {
            </main>
            <section>
             <AboutPage></AboutPage>
+            <ImpactStats></ImpactStats>
            </section>
            <footer>
             <Footer></Footer>
