@@ -46,7 +46,7 @@ const MainSection = () => {
                   state={{ campaign }}
                   className="block w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md transition-colors text-center"
                 >
-                  Add to Collection
+                  Donate Now
                 </Link>
               </div>
             </div>
