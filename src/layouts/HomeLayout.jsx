@@ -1,3 +1,4 @@
+import AboutPage from "../components/AboutPage";
 import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
@@ -19,7 +20,11 @@ const HomeLayout = () => {
            </nav>
            <main className="w-11/12 mx-auto pt-5">
            <MainSection></MainSection>
+           
            </main>
+           <section>
+            <AboutPage></AboutPage>
+           </section>
            <footer>
             <Footer></Footer>
            </footer>
