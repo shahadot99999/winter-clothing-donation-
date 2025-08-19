@@ -4,6 +4,7 @@ import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
 import WinterDonationSlider from "../components/WinterDonationSlider";
 import ImpactStats from "../extracarricullam/ImpactStats";
+import VolunteerTestimonials from "../extracarricullam/VolunteerTestimonials";
 
 
 const HomeLayout = () => {
@@ -26,6 +27,7 @@ const HomeLayout = () => {
            <section>
             <AboutPage></AboutPage>
             <ImpactStats></ImpactStats>
+            <VolunteerTestimonials></VolunteerTestimonials>
            </section>
            <footer>
             <Footer></Footer>
