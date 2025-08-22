@@ -1,7 +1,8 @@
 
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 // import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 // import { auth } from '../firebase/config';
 // import { toast } from 'react-toastify';
@@ -53,65 +54,93 @@ const Registration = () => {
         return errors;
     };
 
-    // Handle form submission
-    const handleSubmit = async (e) => {
+
+    const {createNewUser,  setuser} = useContext(AuthContext);
+
+    const handleSubmit = (e)=>{
         e.preventDefault();
 
-        // Validate form
-        const newErrors = {};
+        //get form data
+        const form = new FormData(e.target);
+        const name = form.get("name");
+        const email = form.get("email");
+        const photo = form.get("photo");
+        const password = form.get("password");
+        console.log({name, email, photo, password});
 
-        if (!formData.name.trim()) {
-            newErrors.name = 'Name is required';
-        }
+        createNewUser(email, password)
+        .then((result)=>{
+            const user = result.user;
+            setuser(user);
+            console.log(user);
+        })
+        
+        .catch((error) => {
+          const errorCode = error.code;
+        const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+  });
 
-        if (!formData.email.trim()) {
-            newErrors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Email is invalid';
-        }
+    }
+    // Handle form submission
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
 
-        if (!formData.password) {
-            newErrors.password = 'Password is required';
-        } else {
-            const passwordErrors = validatePassword(formData.password);
-            if (passwordErrors.length > 0) {
-                newErrors.password = passwordErrors.join(', ');
-            }
-        }
+    //     // Validate form
+    //     const newErrors = {};
 
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
+    //     if (!formData.name.trim()) {
+    //         newErrors.name = 'Name is required';
+    //     }
 
-        setLoading(true);
+    //     if (!formData.email.trim()) {
+    //         newErrors.email = 'Email is required';
+    //     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    //         newErrors.email = 'Email is invalid';
+    //     }
 
-        try {
-            // Create user with email and password
-            const userCredential = await createUserWithEmailAndPassword(
-                auth,
-                formData.email,
-                formData.password
-            );
+    //     if (!formData.password) {
+    //         newErrors.password = 'Password is required';
+    //     } else {
+    //         const passwordErrors = validatePassword(formData.password);
+    //         if (passwordErrors.length > 0) {
+    //             newErrors.password = passwordErrors.join(', ');
+    //         }
+    //     }
 
-            // Update user profile with name and photoURL
-            await updateProfile(userCredential.user, {
-                displayName: formData.name,
-                photoURL: formData.photoURL || null
-            });
+    //     if (Object.keys(newErrors).length > 0) {
+    //         setErrors(newErrors);
+    //         return;
+    //     }
 
-            // Show success message
-            toast.success('Registration successful!');
+    //     setLoading(true);
 
-            // Navigate to home page
-            navigate('/');
-        } catch (error) {
-            console.error('Registration error:', error);
-            toast.error(error.message || 'Registration failed. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    //     try {
+    //         // Create user with email and password
+    //         const userCredential = await createUserWithEmailAndPassword(
+    //             auth,
+    //             formData.email,
+    //             formData.password
+    //         );
+
+    //         // Update user profile with name and photoURL
+    //         await updateProfile(userCredential.user, {
+    //             displayName: formData.name,
+    //             photoURL: formData.photoURL || null
+    //         });
+
+    //         // Show success message
+    //         toast.success('Registration successful!');
+
+    //         // Navigate to home page
+    //         navigate('/');
+    //     } catch (error) {
+    //         console.error('Registration error:', error);
+    //         toast.error(error.message || 'Registration failed. Please try again.');
+    //     } finally {
+    //         setLoading(false);
+    //     }
+    // };
 
     // Handle Google sign-in
     const handleGoogleSignIn = async () => {
