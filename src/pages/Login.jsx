@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -16,20 +17,41 @@ const Login = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const {userLogin, setuser} = useContext(AuthContext);
+
+       const handleSubmit = (e) => {
         e.preventDefault();
-        const newErrors = {};
-        if (!formData.email) newErrors.email = 'Email is required';
-        if (!formData.password) newErrors.password = 'Password is required';
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
 
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
+        console.log({email, password});
 
-        console.log('Login attempt with:', formData);
-        // navigate('/home');
-    };
+        userLogin(email, password)
+        .then(result=>{
+            const user = result.user;
+            setuser(user);
+
+        })
+         .catch((error) => {
+        alert(error.code);
+  });
+ };
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const newErrors = {};
+    //     if (!formData.email) newErrors.email = 'Email is required';
+    //     if (!formData.password) newErrors.password = 'Password is required';
+
+    //     if (Object.keys(newErrors).length > 0) {
+    //         setErrors(newErrors);
+    //         return;
+    //     }
+
+    //     console.log('Login attempt with:', formData);
+    //     // navigate('/home');
+    // };
 
     const handleGoogleLogin = () => {
         console.log('Google login clicked');
