@@ -4,6 +4,7 @@ import DataCollections from "../components/DataCollections";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
+import PrivateRoute from "./PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
     },
     {
         path: "/datacollection",
-        element:<DataCollections></DataCollections>
+        element:<PrivateRoute>
+            <DataCollections></DataCollections>
+        </PrivateRoute>
     },
      {
         path:"/auth",
