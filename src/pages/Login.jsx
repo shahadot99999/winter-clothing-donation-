@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
@@ -19,6 +19,10 @@ const Login = () => {
 
     const {userLogin, setuser} = useContext(AuthContext);
 
+    const location= useLocation();
+    const navigate = useNavigate();
+    console.log(location);
+
        const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -31,6 +35,11 @@ const Login = () => {
         .then(result=>{
             const user = result.user;
             setuser(user);
+            //  navigate(location?.state ? location.state: "/");
+            // get where user came from
+            const from = location.state?.from?.pathname || "/";
+            const campaignState = location.state?.from?.state; // carry campaign
+            navigate(from, { state: campaignState });
 
         })
          .catch((error) => {
