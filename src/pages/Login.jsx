@@ -19,6 +19,8 @@ const Login = () => {
 
     const {userLogin, setuser} = useContext(AuthContext);
 
+    const [error, setError]= useState({});
+
     const location= useLocation();
     const navigate = useNavigate();
     console.log(location);
@@ -42,8 +44,8 @@ const Login = () => {
             navigate(from, { state: campaignState });
 
         })
-         .catch((error) => {
-        alert(error.code);
+         .catch((err) => {
+          setError({ ...error, login: err.code})
   });
  };
 
@@ -101,7 +103,7 @@ const Login = () => {
                                 placeholder="Enter your password"
                                 className={`input input-bordered w-full ${errors.password ? 'input-error' : ''}`}
                             />
-                            {errors.password && <span className="text-error text-sm mt-1">{errors.password}</span>}
+                            {error.login && <span className="text-error text-sm mt-1">{error.login}</span>}
                         </div>
 
                         {/* Forgot Password */}

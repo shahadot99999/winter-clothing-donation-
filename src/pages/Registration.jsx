@@ -57,12 +57,18 @@ const Registration = () => {
 
     const {createNewUser,  setuser} = useContext(AuthContext);
 
+    const [error, setError]= useState({});
+
     const handleSubmit = (e)=>{
         e.preventDefault();
 
         //get form data
         const form = new FormData(e.target);
         const name = form.get("name");
+        if(name.length<5){
+            setError({...error, name: "must be more than 5 character long"});
+            return;
+        }
         const email = form.get("email");
         const photo = form.get("photo");
         const password = form.get("password");
@@ -176,8 +182,8 @@ const Registration = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                             />
-                            {errors.name && (
-                                <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                            {error.name && (
+                                <p className="mt-1 text-sm text-red-600">{error.name}</p>
                             )}
                         </div>
 
