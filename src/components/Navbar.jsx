@@ -21,9 +21,40 @@ const Navbar = () => {
                 <Link to="/career">Career</Link>
                 <Link to="/about">About</Link>
             </div>
+
             <div className="login flex gap-2 items-center">
+                {user && user.email ? (
+                    <div className="flex items-center gap-2">
+                        <img
+                            className="w-10 h-10 rounded-full object-cover"
+                            src={user.photoURL || userIcon}   // fallback if no photo
+                            alt="user"
+                        />
+                        <p>{user.displayName || user.email}</p>
+                    </div>
+                ) : (
+                    <Link to="/auth/login" className="btn btn-neutral rounded-none">
+                        Login
+                    </Link>
+                )}
+
+                {user && (
+                    <button onClick={logOut} className="btn btn-neutral rounded-none">
+                        Log-Out
+                    </button>
+                )}
+            </div>
+            {/* <div className="login flex gap-2 items-center">
                 <div className="">
-                    <img className='h-7' src={userIcon} alt="" />                    
+                   {user && user?.email ? (
+                     <div>
+                        <img className='w-10 rounded-full' src={user?.photoURL} alt='' />
+                        <p>{user.displayName}</p>
+                     </div>
+                   ):(
+                     <img className='h-7' src={userIcon} alt="" />
+                   )
+                   }                    
                 </div>
                 {
                    user && user?.email ? (
@@ -36,10 +67,12 @@ const Navbar = () => {
                 <button >
                    
                     </button>
-            </div>
+            </div> */}
            
         </div>
     );
 };
 
 export default Navbar;
+
+
