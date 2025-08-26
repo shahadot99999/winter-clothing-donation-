@@ -3,66 +3,40 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
-    const [formData, setFormData] = useState({
-        email: '',
-        password: ''
-    });
-    const [errors, setErrors] = useState({});
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: value
-        }));
-    };
+    const { userLogin, setuser } = useContext(AuthContext);
 
-    const {userLogin, setuser} = useContext(AuthContext);
+    const [error, setError] = useState({});
 
-    const [error, setError]= useState({});
-
-    const location= useLocation();
+    const location = useLocation();
     const navigate = useNavigate();
     console.log(location);
 
-       const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log({email, password});
+        console.log({ email, password });
 
         userLogin(email, password)
-        .then(result=>{
-            const user = result.user;
-            setuser(user);
-            //  navigate(location?.state ? location.state: "/");
-            // get where user came from
-            const from = location.state?.from?.pathname || "/";
-            const campaignState = location.state?.from?.state; // carry campaign
-            navigate(from, { state: campaignState });
+            .then(result => {
+                const user = result.user;
+                setuser(user);
+                //  navigate(location?.state ? location.state: "/");
+                // get where user came from
+                const from = location.state?.from?.pathname || "/";
+                const campaignState = location.state?.from?.state; // carry campaign
+                navigate(from, { state: campaignState });
 
-        })
-         .catch((err) => {
-          setError({ ...error, login: err.code})
-  });
- };
+            })
+            .catch((err) => {
+                setError({ ...error, login: err.code })
+            });
+    };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const newErrors = {};
-    //     if (!formData.email) newErrors.email = 'Email is required';
-    //     if (!formData.password) newErrors.password = 'Password is required';
 
-    //     if (Object.keys(newErrors).length > 0) {
-    //         setErrors(newErrors);
-    //         return;
-    //     }
-
-    //     console.log('Login attempt with:', formData);
-    //     // navigate('/home');
-    // };
 
     const handleGoogleLogin = () => {
         console.log('Google login clicked');
@@ -84,12 +58,11 @@ const Login = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
+
                                 placeholder="Enter your email"
-                                className={`input input-bordered w-full ${errors.email ? 'input-error' : ''}`}
+                                className={`input input-bordered w-full ${error.email ? 'input-error' : ''}`}
                             />
-                            {errors.email && <span className="text-error text-sm mt-1">{errors.email}</span>}
+
                         </div>
 
                         {/* Password */}
@@ -98,10 +71,9 @@ const Login = () => {
                             <input
                                 type="password"
                                 name="password"
-                                value={formData.password}
-                                onChange={handleChange}
+
                                 placeholder="Enter your password"
-                                className={`input input-bordered w-full ${errors.password ? 'input-error' : ''}`}
+                                className={`input input-bordered w-full ${error.password ? 'input-error' : ''}`}
                             />
                             {error.login && <span className="text-error text-sm mt-1">{error.login}</span>}
                         </div>
