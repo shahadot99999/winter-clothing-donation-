@@ -22,7 +22,34 @@ const Navbar = () => {
                 <Link to="/about">About</Link>
             </div>
 
-            <div className="login flex gap-2 items-center">
+            <div className="flex items-center gap-3">
+                {user ? (
+                    <>
+                        {/* ✅ Only show uploaded image */}
+                        <img
+                            src={user.photoURL}
+                            alt="Profile"
+                            className="w-8 h-8 rounded-full border"
+                        />
+
+                        <span>{user.displayName || user.email}</span>
+
+                        <button
+                            onClick={logOut}
+                            className="px-3 py-1 bg-black text-white rounded shadow"
+                        >
+                            Log-Out
+                        </button>
+                    </>
+                ) : (
+                    <a href="/auth/login" className="px-3 py-1 bg-indigo-600 text-white rounded">
+                        Login
+                    </a>
+                )}
+            </div>
+
+  
+            {/* <div className="login flex gap-2 items-center">
                 {user && user.email ? (
                     <div className="flex items-center gap-2">
                         <img
@@ -43,7 +70,7 @@ const Navbar = () => {
                         Log-Out
                     </button>
                 )}
-            </div>
+            </div> */}
             {/* <div className="login flex gap-2 items-center">
                 <div className="">
                    {user && user?.email ? (
