@@ -2,6 +2,8 @@
 import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import app from "../firebase/firebase.config"
 
 const Registration = () => {
   const { createNewUser, setuser, updateUserProfile } = useContext(AuthContext);
@@ -9,6 +11,9 @@ const Registration = () => {
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");   // ✅ track password live
   const navigate = useNavigate();
+
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth(app);
 
 
 
@@ -79,8 +84,15 @@ const Registration = () => {
 
 
   const handleGoogleLogin = () => {
-    console.log('Google login clicked');
-    // navigate('/home');
+    //console.log('Google login clicked');
+     // navigate('/home');
+    signInWithPopup(auth, provider)
+    .then((result)=>{
+    // console.log(result);
+   })
+   .catch(error =>{
+    // console.log(error);
+   })
   };
 
   return (
