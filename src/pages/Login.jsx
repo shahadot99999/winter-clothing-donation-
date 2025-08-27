@@ -1,12 +1,17 @@
 import { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import app from '../firebase/firebase.config';
 
 const Login = () => {
 
     const { userLogin, setuser } = useContext(AuthContext);
 
     const [error, setError] = useState({});
+
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth(app);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -39,9 +44,18 @@ const Login = () => {
 
 
     const handleGoogleLogin = () => {
-        console.log('Google login clicked');
+        //console.log('Google login clicked');
         // navigate('/home');
+        signInWithPopup(auth, provider)
+        .then((result)=>{
+    // console.log(result);
+   })
+   .catch(error =>{
+    // console.log(error);
+   })
     };
+
+      
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
