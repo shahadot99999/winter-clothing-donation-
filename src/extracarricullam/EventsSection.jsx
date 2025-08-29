@@ -2,6 +2,7 @@ import img9 from "../assets/img9.jpg"
 import img10 from "../assets/img10.jpg"
 
 const EventsSection = () => {
+ 
     return (
        <div className="py-16 bg-base-200">
       <div className="max-w-6xl mx-auto px-4">

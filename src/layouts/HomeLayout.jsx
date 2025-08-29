@@ -2,6 +2,7 @@ import AboutPage from "../components/AboutPage";
 import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 import Navbar from "../components/Navbar";
+import WinterDonationsAnimation from "../components/WinterDonationsAnimation";
 import WinterDonationSlider from "../components/WinterDonationSlider";
 import EventsSection from "../extracarricullam/EventsSection";
 import ImpactStats from "../extracarricullam/ImpactStats";
@@ -18,6 +19,7 @@ const HomeLayout = () => {
            </section>
            <section>
                <WinterDonationSlider></WinterDonationSlider>
+               <WinterDonationsAnimation></WinterDonationsAnimation>
            </section>
            
             

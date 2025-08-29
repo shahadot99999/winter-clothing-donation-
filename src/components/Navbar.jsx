@@ -7,6 +7,7 @@ import { AuthContext } from '../provider/AuthProvider';
 
 const Navbar = () => {
     const {user, logOut}= useContext(AuthContext);
+    //  console.log("ENV VAR:", import.meta.env.VITE_a);
     return (
         <div className='flex justify-between items-center mx-auto'>
 
@@ -31,6 +32,7 @@ const Navbar = () => {
                             alt="Profile"
                             className="w-8 h-8 rounded-full border"
                         />
+                       
 
                         <span>{user.displayName || user.email}</span>
 
@@ -78,5 +80,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
 
