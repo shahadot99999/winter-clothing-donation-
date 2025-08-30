@@ -10,6 +10,8 @@ const Login = () => {
 
     const [error, setError] = useState({});
 
+     const [emailValue, setEmailValue] = useState(''); // Add state for email
+
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
 
@@ -55,6 +57,11 @@ const Login = () => {
    })
     };
 
+    // Handle email input change
+    const handleEmailChange = (e) => {
+        setEmailValue(e.target.value);
+    };
+
       
 
     return (
@@ -72,7 +79,8 @@ const Login = () => {
                             <input
                                 type="email"
                                 name="email"
-
+                                value={emailValue}
+                                onChange={handleEmailChange}
                                 placeholder="Enter your email"
                                 className={`input input-bordered w-full ${error.email ? 'input-error' : ''}`}
                             />
@@ -94,7 +102,11 @@ const Login = () => {
 
                         {/* Forgot Password */}
                         <div className="text-left mb-6">
-                            <Link to="/forgot-password" className="label-text-alt link link-primary">
+                            <Link
+                                to="/auth/forgot-password"
+                                state={{ email: emailValue }} // Pass the current email value
+                                className="label-text-alt link link-primary"
+                            >
                                 Forgot Password?
                             </Link>
                         </div>
