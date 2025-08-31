@@ -4,13 +4,23 @@ import { AuthContext } from '../provider/AuthProvider';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 
+
+// Font Awesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
 const Login = () => {
 
     const { userLogin, setuser } = useContext(AuthContext);
 
     const [error, setError] = useState({});
 
-     const [emailValue, setEmailValue] = useState(''); // Add state for email
+    // Add state for email
+     const [emailValue, setEmailValue] = useState(''); 
+
+       // State for password visibility
+       const [showPassword, setShowPassword] = useState(false); 
 
     const provider = new GoogleAuthProvider();
     const auth = getAuth(app);
@@ -62,6 +72,11 @@ const Login = () => {
         setEmailValue(e.target.value);
     };
 
+     // Toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
       
 
     return (
@@ -87,16 +102,27 @@ const Login = () => {
 
                         </div>
 
-                        {/* Password */}
+                        {/* Password with toggle */}
                         <div className="form-control mb-2">
                             <span className="label-text mb-1">Password</span>
-                            <input
-                                type="password"
-                                name="password"
-
-                                placeholder="Enter your password"
-                                className={`input input-bordered w-full ${error.password ? 'input-error' : ''}`}
-                            />
+                            <div className="relative">
+                                <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    placeholder="Enter your password"
+                                    className={`input input-bordered w-full pr-10 ${error.password ? 'input-error' : ''}`}
+                                />
+                                <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                                    onClick={togglePasswordVisibility}
+                                >
+                                    <FontAwesomeIcon
+                                        icon={showPassword ? faEyeSlash : faEye}
+                                        className="w-4 h-4"
+                                    />
+                                </button>
+                            </div>
                             {error.login && <span className="text-error text-sm mt-1">{error.login}</span>}
                         </div>
 
