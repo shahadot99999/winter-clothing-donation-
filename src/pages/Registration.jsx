@@ -1,15 +1,21 @@
-
 import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import app from "../firebase/firebase.config"
 
+// Font Awesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+
+
 const Registration = () => {
   const { createNewUser, setuser, updateUserProfile } = useContext(AuthContext);
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");   // ✅ track password live
+  const [showPassword, setShowPassword] = useState(false); // Password visibility state
   const navigate = useNavigate();
 
   const provider = new GoogleAuthProvider();
@@ -85,14 +91,19 @@ const Registration = () => {
 
   const handleGoogleLogin = () => {
     //console.log('Google login clicked');
-     // navigate('/home');
+    // navigate('/home');
     signInWithPopup(auth, provider)
-    .then((result)=>{
-    // console.log(result);
-   })
-   .catch(error =>{
-    // console.log(error);
-   })
+      .then((result) => {
+        // console.log(result);
+      })
+      .catch(error => {
+        // console.log(error);
+      })
+  };
+
+  // Toggle password visibility
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -154,16 +165,28 @@ const Registration = () => {
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}   // ✅ update live
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"
-                placeholder="Create a password"
-              />
+              <div className="relative">
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md pr-10"
+                  placeholder="Create a password"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                  onClick={togglePasswordVisibility}
+                >
+                  <FontAwesomeIcon
+                    icon={showPassword ? faEyeSlash : faEye}
+                    className="w-4 h-4"
+                  />
+                </button>
+              </div>
               {error.password && (
                 <p className="mt-1 text-sm text-red-600">{error.password}</p>
               )}
@@ -207,10 +230,8 @@ const Registration = () => {
             onClick={handleGoogleLogin}
             className="btn btn-outline gap-2 w-3/4"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512" className="w-5 h-5">
-              <path fill="red" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
-            </svg>
-            Sign in with Google
+            <FontAwesomeIcon icon={faGoogle} className="w-5 h-5 text-red-600" />
+            Sign up with Google
           </button>
         </div>
 
