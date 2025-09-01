@@ -1,12 +1,45 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+❄️ Winter Donation Campaigns
 
-Currently, two official plugins are available:
+Bring warmth to vulnerable communities during winter. A compassionate platform connecting donors with winter clothing campaigns across Bangladesh through an intuitive React application.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+✨ Features
+🏠 Interactive Homepage - Engaging navbar, animated slider, and campaign showcase
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+🔐 Secure Authentication - Login/Register with email or Google using Firebase Auth
+
+🛡️ Protected Routes - Private routing for donation functionality
+
+🎯 Campaign Management - View ongoing winter donation campaigns with progress tracking
+
+❤️ Easy Donation Process - Intuitive donation interface with item selection
+
+📱 Responsive Design - Beautiful UI that works on all devices using Tailwind CSS
+
+🎨 Smooth Animations - Enhanced user experience with AOS (Animate On Scroll)
+
+⚡ Fast Performance - Optimized React components with efficient data loading
+
+
+🚀 Live Demo
+
+
+
+
+
+🛠️ Technologies Used
+Frontend Framework: React.js
+
+Styling: Tailwind CSS with custom components
+
+Authentication: Firebase Auth
+
+Routing: React Router
+
+Animations: AOS (Animate On Scroll)
+
+Icons: React Icons
+
+Deployment: Vercel/Netlify/Firebase Hosting
+
